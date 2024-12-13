@@ -3,6 +3,7 @@ package com.example.proyecto_app.screen.menu
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -55,7 +56,8 @@ fun HeaderMenu(navController: NavController, texto: String) {
 @Composable
 fun IconoBack(navController: NavController) {
     IconButton(
-        onClick = { navController.popBackStack() }
+        onClick = { navController.popBackStack() },
+        modifier = Modifier.padding(16.dp)
     ) {
         Icon(
             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -69,7 +71,8 @@ fun IconoBack(navController: NavController) {
 @Composable
 fun IconoBurguer(navController: NavController) {
     IconButton(
-        onClick = {}
+        onClick = {},
+        modifier = Modifier.padding(16.dp)
     ) {
         Icon(
             imageVector = Icons.Default.Menu,
