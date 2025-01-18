@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Subject
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Coffee
 import androidx.compose.material.icons.filled.EditCalendar
@@ -43,8 +42,8 @@ fun CardOpcion(opcion: Opcion){
             .clickable {  },
         elevation = CardDefaults.cardElevation(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Black,
-            contentColor = Orange
+            containerColor = Orange,
+            contentColor = Color.Black
         ),
         border = BorderStroke(2.dp, Color.Gray),
         shape = MaterialTheme.shapes.small
@@ -70,9 +69,10 @@ fun CardOpcion(opcion: Opcion){
 
 @Composable
 fun OpcionesGridView(navController: NavController){
-
     LazyVerticalGrid(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),

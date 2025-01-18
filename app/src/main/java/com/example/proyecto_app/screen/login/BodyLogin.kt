@@ -57,7 +57,7 @@ fun BodyLogin(
             if (isEmailError) {
                 emailFocusRequester.requestFocus()
             }
-            else if (isPasswordError) {
+            if (isPasswordError) {
                 passwordFocusRequester.requestFocus()
             }
             else {

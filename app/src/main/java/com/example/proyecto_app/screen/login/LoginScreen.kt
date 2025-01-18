@@ -48,8 +48,5 @@ fun Login(navController: NavController, loginViewModel: LoginViewModel) {
                 showDialog)
         }
     }
-
-
-
 }
 

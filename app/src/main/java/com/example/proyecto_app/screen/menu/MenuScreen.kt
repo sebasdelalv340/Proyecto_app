@@ -3,6 +3,7 @@ package com.example.proyecto_app.screen.menu
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -19,11 +20,19 @@ fun MenuScreen(navController: NavController, texto: String) {
 fun Menu(navController: NavController, texto: String){
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding))
+        Column(modifier = Modifier
+            .padding(innerPadding)
+            .fillMaxSize())
         {
             HeaderMenu(navController, texto)
-            OpcionesGridView(navController)
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+                contentAlignment = Alignment.Center) {
+                OpcionesGridView(navController)
+            }
+            Box(modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.BottomCenter){
                 FooterMenu(navController)
             }
         }

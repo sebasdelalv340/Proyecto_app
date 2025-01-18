@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -21,7 +22,8 @@ fun EmailLogin(
     OutlinedTextField(
         modifier = Modifier
             .width(310.dp)
-            .focusRequester(focusRequester),
+            .focusRequester(focusRequester)
+            .testTag("loginEmail"),
         value = textUser,
         onValueChange = onValueChanged,
         label = { Text("Email") },
@@ -32,7 +34,7 @@ fun EmailLogin(
             text = "El campo email no puede estar vacío",
             color = MaterialTheme.colorScheme.error,
             style = MaterialTheme.typography.labelSmall,
-            modifier = Modifier.padding(top = 4.dp)
+            modifier = Modifier.padding(top = 4.dp).testTag("errorLoginEmail")
         )
     }
 }

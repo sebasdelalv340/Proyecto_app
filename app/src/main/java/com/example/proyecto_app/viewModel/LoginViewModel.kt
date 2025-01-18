@@ -25,7 +25,6 @@ class LoginViewModel: ViewModel() {
     private val _isChecked = MutableLiveData<Boolean>()
     val isChecked: LiveData<Boolean> = _isChecked
 
-
     private val _usuarioCredenciales = Usuario("sebas", "1234")
 
     fun onValueChange(email: String, password: String) {
@@ -44,9 +43,5 @@ class LoginViewModel: ViewModel() {
 
     fun changeShowDialog(show: Boolean){
         _showDialog.value = show
-    }
-
-    fun onCheckedChange(checked: Boolean) {
-        _isChecked.value = checked
     }
 }

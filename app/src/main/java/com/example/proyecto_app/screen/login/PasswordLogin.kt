@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -34,7 +35,8 @@ fun PasswordLogin(
     OutlinedTextField(
         modifier = Modifier
             .width(310.dp)
-            .focusRequester(focusRequester),
+            .focusRequester(focusRequester)
+            .testTag("loginPassword"),
         value = textPassword,
         onValueChange = onPasswordChange,
         label = { Text("Contraseña") },
@@ -55,7 +57,7 @@ fun PasswordLogin(
             text = "El campo contraseña no puede estar vacío",
             color = MaterialTheme.colorScheme.error,
             style = MaterialTheme.typography.labelSmall,
-            modifier = Modifier.padding(top = 4.dp)
+            modifier = Modifier.padding(top = 4.dp).testTag("errorLoginPassword")
         )
     }
 

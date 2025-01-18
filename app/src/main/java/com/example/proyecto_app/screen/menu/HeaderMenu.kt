@@ -48,7 +48,9 @@ fun HeaderMenu(navController: NavController, texto: String) {
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Orange,
-            titleContentColor = Color.Black
+            titleContentColor = Color.Black,
+            navigationIconContentColor = Color.Black,
+            actionIconContentColor = Color.Black
         )
     )
 }
