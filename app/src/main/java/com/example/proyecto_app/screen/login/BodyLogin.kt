@@ -62,7 +62,7 @@ fun BodyLogin(
             }
             else {
                 if (loginViewModel.comprobarCredenciales(textEmail, textPassword)) {
-                    navController.navigate("Menu" + "/$textEmail")
+                    navController.navigate("menu" + "/$textEmail")
                     loginViewModel.onValueChange("", "")
                 } else {
                     loginViewModel.changeShowDialog(true)

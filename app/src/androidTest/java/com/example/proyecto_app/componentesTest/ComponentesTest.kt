@@ -1,5 +1,7 @@
 package com.example.proyecto_app.componentesTest
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
@@ -8,16 +10,21 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
+import com.example.proyecto_app.model.Opcion
+import com.example.proyecto_app.screen.login.ButtonRegistrarse
 import com.example.proyecto_app.screen.login.ButtonSesion
 import com.example.proyecto_app.screen.login.EmailLogin
 import com.example.proyecto_app.screen.login.PasswordLogin
+import com.example.proyecto_app.screen.menu.CardOpcion
 import org.junit.Rule
 import org.junit.Test
+
 
 class ComponentesTest {
 
     @get: Rule
     val composeTestRule = createComposeRule()
+
 
     @Test
     fun whenTextIsAdded_loginEmailTest() {
@@ -103,7 +110,6 @@ class ComponentesTest {
         var emailFocused = false
         var passwordFocused = false
         var showErrorDialog = false
-        var navigationTriggered = false
         var email = "test@example.com"
         var password = "password123"
 
@@ -128,16 +134,9 @@ class ComponentesTest {
             }
         }
 
-        // Navegador simulado
-        class FakeNavController {
-            fun navigate(ruta : String) {
-                navigationTriggered = true
-            }
-        }
-
         // Instanciamos nuestros simuladores
         val fakeLoginViewModel = FakeViewModel()
-        val fakeNavController = FakeNavController()
+
 
         composeTestRule.setContent {
             ButtonSesion {
@@ -150,7 +149,6 @@ class ComponentesTest {
                     passwordFocused = true
                 } else {
                     if (fakeLoginViewModel.comprobarCredenciales(email, password)) {
-                        fakeNavController.navigate("Menu/$email")
                         fakeLoginViewModel.onValueChange("", "")
                     } else {
                         fakeLoginViewModel.changeShowDialog(true)
@@ -183,7 +181,6 @@ class ComponentesTest {
         composeTestRule.onNodeWithTag("buttonSesion").performClick()
         assert(!isEmailError)
         assert(!isPasswordError)
-        assert(navigationTriggered)
         assert(email.isEmpty() && password.isEmpty())
 
         // Validación 5: Probar credenciales incorrectas
@@ -191,6 +188,33 @@ class ComponentesTest {
         password = "wrongPassword"
         composeTestRule.onNodeWithTag("buttonSesion").performClick()
         assert(showErrorDialog)
+    }
+
+    @Test
+    fun whenClicked_buttonRegisterTest() {
+        var isClicked = false
+        composeTestRule.setContent {
+            ButtonRegistrarse(
+                onClick = { isClicked = true }
+            )
+        }
+
+        composeTestRule.onNodeWithTag("botonRegistrar").assert(hasText("Registrarme"))
+        composeTestRule.onNodeWithTag("botonRegistrar").performClick()
+        assert(isClicked)
+    }
+
+    @Test
+    fun whenClicked_cardOptionTest() {
+        val option = Opcion(Icons.Filled.PersonAdd, "Crear usuario", "Registrar de usuario")
+        composeTestRule.setContent {
+            CardOpcion(
+                opcion = option
+            )
+        }
+        composeTestRule.onNodeWithTag("cardOption").assertExists()
+        composeTestRule.onNodeWithTag("cardOption").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("cardOption").performClick()
     }
 }
 

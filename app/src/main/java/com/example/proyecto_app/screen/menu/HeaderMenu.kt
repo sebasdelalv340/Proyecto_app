@@ -17,6 +17,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,7 +60,9 @@ fun HeaderMenu(navController: NavController, texto: String) {
 fun IconoBack(navController: NavController) {
     IconButton(
         onClick = { navController.popBackStack() },
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier
+            .padding(16.dp)
+            .testTag("iconoBack")
     ) {
         Icon(
             imageVector = Icons.AutoMirrored.Filled.ArrowBack,

@@ -15,18 +15,18 @@ import com.example.proyecto_app.viewModel.LoginViewModel
 @Composable
 fun AppNavigation(loginViewModel: LoginViewModel) {
     val navControlador = rememberNavController()
-    NavHost(navController = navControlador, startDestination = "Portada"){
-        composable("Portada"){
+    NavHost(navController = navControlador, startDestination = "portada"){
+        composable("portada"){
             PortadaScreen(navControlador)
         }
-        composable("Login")
+        composable("login")
         {
             LoginScreen(navControlador,loginViewModel)
         }
-        composable("Registro"){
+        composable("registro"){
             RegistroScreen(navControlador)
         }
-        composable("Menu" + "/{text}",
+        composable("menu" + "/{text}",
             arguments = listOf(navArgument(name = "text") {
                 type = NavType.StringType
             })

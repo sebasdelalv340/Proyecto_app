@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.testTag
 import com.example.proyecto_app.viewModel.LoginViewModel
 
 @Composable
@@ -33,7 +34,7 @@ fun Login(navController: NavController, loginViewModel: LoginViewModel) {
     val passwordFocusRequester = remember { FocusRequester() }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding))
+        Column(modifier = Modifier.padding(innerPadding).testTag("login"))
         {
             HeaderLogin()
             BodyLogin(Modifier.weight(1f),
