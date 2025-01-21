@@ -28,8 +28,8 @@ class NavigationTest {
     private lateinit var navController: TestNavHostController
 
     @Before
-    fun setupRallyNavHost() {
-        var fakeViewModel = LoginViewModel()
+    fun setupNavHost() {
+        val fakeViewModel = LoginViewModel()
         composeTestRule.setContent {
             navController = TestNavHostController(LocalContext.current)
             navController.navigatorProvider.addNavigator(
@@ -37,7 +37,7 @@ class NavigationTest {
             )
             NavHost(
                 navController = navController,
-                startDestination = "login"
+                startDestination = "portada"
             ) {
                 composable("portada") {
                     PortadaScreen(navController)
@@ -58,16 +58,17 @@ class NavigationTest {
     }
 
     @Test
-    fun whenClicked_CardNavigateBack_cardOptionTest() {
-
+    fun whenStart_portadaScreenIsDisplayed() {
         // Verifica que estamos en la pantalla "Portada"
-        //composeTestRule.onNodeWithTag("portada").assertExists()
-        //composeTestRule.onNodeWithTag("portada").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("portada").assertExists()
+        composeTestRule.onNodeWithTag("portada").assertIsDisplayed()
+    }
 
-        // Espera que la navegación se realice después del retraso de 1 segundo
-        composeTestRule.waitForIdle() // Espera a que la composición se complete
+    // Para comprobar este test debemos poner "login" como pantalla de inicio en el NavHost
+    @Test
+    fun whenClicked_IconNavigateBack_iconBackTest() {
 
-        // Navegar a la pantalla "Login"
+        // Verificar que estamos en la pantalla "Login"
         composeTestRule.onNodeWithTag("login").assertExists()
         composeTestRule.onNodeWithTag("login").assertIsDisplayed()
 
@@ -75,7 +76,7 @@ class NavigationTest {
         composeTestRule.onNodeWithTag("loginEmail").performTextInput("sebas")
         composeTestRule.onNodeWithTag("loginPassword").performTextInput("1234")
 
-        // Simula clic en el botón de "Verificar"
+        // Simula clic en el botón de "Iniciar sesión"
         composeTestRule.onNodeWithTag("buttonSesion").performClick()
 
         composeTestRule.waitForIdle()
